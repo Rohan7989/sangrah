@@ -1,35 +1,60 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Ionicons } from '@expo/vector-icons';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
 
-export default function TabLayout() {
+export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Tabs>
+        <Tabs.Screen
+  name="index"
+          options={{
+            title: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="home-outline" size={size} color={color} />
+            ),
+          }}
+        />
+
+        {/* Search Page */}
+        <Tabs.Screen
+          name="search"
+          options={{
+            title: 'Search',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="search-outline" size={size} color={color} />
+            ),
+          }}
+        />
+
+        {/* Add/Save Page */}
+        <Tabs.Screen
+          name="save"
+          options={{
+            title: 'Add',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="add-circle-outline" size={size} color={color} />
+            ),
+          }}
+        />
+
+        {/* Saved List Page */}
+        {/* <Tabs.Screen
+          name="list"
+          options={{
+            title: 'Saved List',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="list-outline" size={size} color={color} />
+            ),
+          }}
+        /> */}
+      </Tabs>
+      <StatusBar style="auto" />
+    </ThemeProvider>
   );
 }
