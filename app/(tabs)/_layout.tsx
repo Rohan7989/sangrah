@@ -14,7 +14,7 @@ export default function RootLayout() {
 
         {/* Search Page */}
         <Tabs.Screen
-          name="search"
+          name="index"
           options={{
             title: 'Search',
             tabBarIcon: ({ color, size }) => (
