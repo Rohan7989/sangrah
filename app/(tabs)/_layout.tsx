@@ -12,7 +12,7 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Tabs>
         <Tabs.Screen
-  name="index"
+          name="index"
           options={{
             title: 'Home',
             tabBarIcon: ({ color, size }) => (
@@ -42,17 +42,6 @@ export default function RootLayout() {
             ),
           }}
         />
-
-        {/* Saved List Page */}
-        {/* <Tabs.Screen
-          name="list"
-          options={{
-            title: 'Saved List',
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="list-outline" size={size} color={color} />
-            ),
-          }}
-        /> */}
       </Tabs>
       <StatusBar style="auto" />
     </ThemeProvider>
