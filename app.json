@@ -20,7 +20,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.link_storing_app"
+      "package": "com.anonymous.sangrah"
     },
     "web": {
       "output": "static",
@@ -49,7 +49,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "5efca71c-1cdf-48d3-b16a-d565c64979e7"
+        "projectId": "1bc76e5b-02ac-46de-9848-e526552c391f"
       }
     }
   }
