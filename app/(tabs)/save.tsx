@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
-import { StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Switch, Text, TextInput, TouchableOpacity, useColorScheme, View } from 'react-native';
+const scheme = useColorScheme(); // 'dark' or 'light'
 
 export default function SavePage() {
   const [name, setName] = useState('');
@@ -26,7 +27,10 @@ export default function SavePage() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>💾 Add a Link</Text>
-      <TextInput style={styles.input} placeholder="Website link/App Name" value={name} onChangeText={setName} />
+      <TextInput style={[ styles.input, { color: scheme === 'dark' ? '#0b0101' : '#000' } ]} 
+        placeholder="Website link/App Name" placeholderTextColor={scheme === 'dark' ? '#ccc' : '#888'} 
+        value={name} onChangeText={setName} 
+      />
       <View style={styles.row}><Text style={styles.label}>Free?</Text><Switch value={isFree} onValueChange={setIsFree} /></View>
       <View style={styles.row}><Text style={styles.label}>Sign-in Required?</Text><Switch value={requiresSignIn} onValueChange={setRequiresSignIn} /></View>
       <View style={styles.row}>
@@ -40,7 +44,10 @@ export default function SavePage() {
           <Text style={styles.optionText}>🔗 Both</Text>
         </TouchableOpacity>
       </View>
-      <TextInput style={styles.input} placeholder="Notes/Tags" value={notes} onChangeText={setNotes} />
+      <TextInput style={[ styles.input, { color: scheme === 'dark' ? '#0b0101' : '#000' } ]} 
+        placeholder="Notes/Tags" placeholderTextColor={scheme === 'dark' ? '#ccc' : '#888'} 
+        value={notes} onChangeText={setNotes} 
+      />
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Text style={styles.saveButtonText}>Save</Text>
       </TouchableOpacity>

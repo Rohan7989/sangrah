@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, useColorScheme, View } from 'react-native';
+const scheme = useColorScheme(); // 'dark' or 'light'
 
 export default function SearchPage() {
   const [search, setSearch] = useState('');
@@ -32,11 +33,16 @@ export default function SearchPage() {
     <View style={styles.container}>
       <Text style={styles.title}>🔍 Search Links</Text>
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          { color: scheme === 'dark' ? '#0b0101' : '#000' }
+        ]}
         placeholder="Type to search..."
+        placeholderTextColor={scheme === 'dark' ? '#ccc' : '#888'}
         value={search}
         onChangeText={setSearch}
       />
+
 
       <FlatList
         data={filteredData}
